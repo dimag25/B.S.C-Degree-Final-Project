@@ -1,0 +1,31 @@
+/* Empty. Add your own CSS if you like */
+#logout_btn {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+* {
+  font-size: 14px;
+}
+
+.spinner svg {
+  width: 50px;
+  height: 50px;
+  stroke: aqua;
+}
+
+.spinner {
+  position: absolute;
+  z-index: 1;
+  left: 45%;
+  top: 45%;
+}
+
+.interval-img {
+  z-index: -1;
+}
+
+.debugging {
+  color: blue;
+  font-size: 12px;
+}

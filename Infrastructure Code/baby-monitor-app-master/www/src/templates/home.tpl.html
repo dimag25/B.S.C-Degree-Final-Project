@@ -1,0 +1,39 @@
+
+<ion-view view-title="Monitor Dashboard">
+
+  <ion-nav-buttons side="primary">
+    <!-- <a id="logout_btn" nav-direction="exit" href="#/login" class="button button-dark button-clear ion-log-out"> Logout</a> -->
+    <button id="logout_btn" nav-direction="exit" ng-click="logout()" class="button button-dark button-clear ion-log-out"> Logout</button>
+  </ion-nav-buttons>
+
+
+  <ion-content class="padding">
+
+    <div class="card">
+
+      <div class="item item-divider">
+        Camera Snapshot
+      </div>
+
+      <p class="item">
+        This snapshot updates every 5 seconds
+        <ion-spinner ng-show="spinner"></ion-spinner>
+        <img class="item interval-img" ng-src="{{image}}" alt="intervalImage" width="100%"/>
+      </p>
+
+      <p class="item bpm">
+        BPM: {{bpm}}
+      </p>
+
+      <p class="item motion">
+        Motion Detected: {{motion}}
+      </p>
+
+      <p class="item debugging">
+        Debugging: {{debugging}}
+      </p>
+
+    </div>
+
+  </ion-content>
+</ion-view>
