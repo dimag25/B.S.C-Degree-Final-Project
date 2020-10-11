@@ -1,0 +1,49 @@
+Main Loop:
+
+define VideoCapture and extract width, height and fps
+define minFaceSize as 40% of the frame
+create FrameHandler instance
+load LBP Cascade XML for face detection
+
+loop while ESC key has not been pressed and frame is not empty
+	read frame from camera
+	
+	send snapshot to server every 60 seconds
+	
+	detectMultiScale - locate all faces and insert to discoveredFaces list
+	
+	if discoveredFaces.size >= knownFaces.size //same amount of faces or new faces
+		for each knownFace 
+			locate the closest face in discoveredFaces 
+			process (see Face Processing below)
+		for each discoveredFace in discoveredFaces that is not in knownFaces 
+			create new face instance and add to knownFaces
+			process (see Face Processing below)
+			
+	if discoveredFaces.size < knownFaces.size //lesser amount of faces
+		set all knownFaces as unmatched
+		
+		for each discoveredFace in discoveredFaces
+			match to closest unmatched knownFace
+			set knownFace as matched
+			process (see Face Processing below)
+			
+		remove all unmatched faces from knownFaces
+		
+	if there is no face with a valid heart rate 
+		send alert to server
+		run motion detection (see Motion Detection below)
+	
+Face Processing:
+	update face size and position and re-adjust ROI position
+	magnify ROI using Eulerian Video Magnification
+	if signal is stable and not too noisy
+		deternd and normalize the pulse signal
+		apply mean filter to the pulse signal
+		detect peaks base on the Pulse Onset Detection algorithm
+		if pulse signal is valid
+			estimate heart rate
+	else reset all components
+	
+Motion detection:
+	
